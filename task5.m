@@ -3,12 +3,19 @@
 clear;
 close all;
 
-h = 1*10^(-9);  % time step
-IVPSolver = @eulerstep;
 ydot = @ydot_V_DC; % rhs-equations
-r_0 = 3*10^(-3); % electrode distance to origo
+initialConditions = [1e-3, 0, 0, 0]; % [x_0, y_0, u_0, v_o]
 
-% Plot with initial conditions x_0=1mm, y_0=0, v_0=u_0=0
-initialConditions = [1*10^(-3), 0, 0, 0];
+expValues = -10:0.1:-5;
+n = length(expValues);
+h = zeros(1,n);
+maxE_euler = zeros(1,n);
+maxE_RK4 = zeros(1,n);
 
-maxE_x = getMaxError(h, initialConditions, IVPSolver, ydot)
+for i = 1:n
+    h(i) = 1*10^(expValues(i));  % time step
+    maxE_euler(i) = getMaxError(h(i), initialConditions, @eulerstep, ydot);
+    maxE_RK4(i) = getMaxError(h(i), initialConditions, @RK4, ydot);
+end
+
+loglog(h,maxE_euler,h,maxE_RK4);

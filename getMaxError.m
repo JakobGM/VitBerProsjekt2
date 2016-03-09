@@ -26,6 +26,6 @@ analyticT = linspace(0, T, n+1);
 analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);
 
 % get maximum error
-maxE_x = max(rot90((Y(:,1)))-analyticSolutionX);
+maxE_x = abs(max(analyticSolutionX-rot90(Y(:,1))));
 
 end
