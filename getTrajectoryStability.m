@@ -11,7 +11,7 @@ Y(1,:) = ic;
 
 % get data points
 for i=1:n,
-    Y(i+1,:) = IVPSolver(t,Y(i,:),h,ydot);
+    Y(i+1,:) = IVPSolver(t,Y(i,:),h,ydot, V_DC, V_AC);
     t = t+h;
 end
 
