@@ -1,11 +1,12 @@
-function plotTrajectory3D(T, h, p, ic, r_0, IVPSolver, ydot)
+function plotTrajectory3D(T, h, p, ic, IVPSolver, ydot)
 % Plot trajectory of object/particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
 
+r_0 = 3e-3; % electrode distance to origo
 n = round(T/h);
 t = 0;
-Y = zeros(n+1,length(ic)-2);
+Y = zeros(n+1,length(ic)-2); % matrix for storing x, y, u and v values
 Y(1,:) = ic([1 2 4 5]);
 
 % get data points

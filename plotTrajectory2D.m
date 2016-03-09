@@ -1,11 +1,12 @@
-function plotTrajectory2D(T, h, p, ic, r_0, IVPSolver, ydot)
+function plotTrajectory2D(T, h, p, ic, IVPSolver, ydot)
 % Plot trajectory of object/particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
 
+r_0 = 3e-3; % electrode distance to origo
 n = round(T/h);
 t = 0;
-Y = zeros(n+1,length(ic));
+Y = zeros(n+1,length(ic)); % matrix for storing x, y, u and v values
 Y(1,:) = ic;
 
 % get data points
@@ -34,12 +35,11 @@ line([0 0], [-axisLimit axisLimit], 'color', 'k', 'linewidth', 0.5);
 head=line('color','r','Marker','.','markersize',20, ...
     'xdata',[],'ydata',[]);
 
-% analytic solution for x_0=1, y_0=0
+% analytic solution for x_0=1mm, y_0=0
 if ic(2) == 0
     V_DC = 5; % DC-voltage
-    m = 28*1.66*10^(-27); % particle mass
-    q = 1.60*10^(-19); % particle charge
-    r_0 = 3*10^(-3); % electrode distance to origo
+    m = 28*1.66e-27; % particle mass
+    q = 1.60e-19; % particle charge
     a = 2*V_DC*q/(m*r_0^2);
     analyticT = linspace(0, T, n+1);
     analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);

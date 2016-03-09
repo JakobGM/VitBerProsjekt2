@@ -6,7 +6,7 @@ function stable = getTrajectoryStability(T, h, ic, r_0, IVPSolver, ...
 
 n = round(T/h);
 t = 0;
-Y = zeros(n+1,length(ic));
+Y = zeros(n+1,length(ic));  % matrix for storing x, y, u and v values
 Y(1,:) = ic;
 
 % get data points
