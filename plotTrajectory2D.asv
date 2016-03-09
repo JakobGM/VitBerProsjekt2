@@ -31,7 +31,7 @@ if ic(2) == 0
     r_0 = 3*10^(-3); % electrode distance to origo
     a = 2*V_DC*q/(m*r_0^2);
     analyticT = linspace(0, T, n+1);
-    analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);
+    analyticSolutionX = 5*10^(-4) * 1e-3*cos(sqrt(a)*ana
                                  
     head2=line('color','c','Marker','.','markersize',15, ...
         'xdata',[],'ydata',[]);
