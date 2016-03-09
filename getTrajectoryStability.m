@@ -1,4 +1,4 @@
-function stable = getTrajectoryStability(T, h, p, ic, r_0, IVPSolver, ydot)
+function stable = getTrajectoryStability(T, h, ic, r_0, IVPSolver, ydot)
 % Find if particle has a stable trajectory, calculated from initial 
 % conditions (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with
 % time step h, with steps per point plottet p over total time T
