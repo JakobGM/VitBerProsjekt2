@@ -10,7 +10,7 @@ r_0 = 3*10^(-3); % electrode distance to origo
 T = sqrt(m*r_0^2/2/V_DC/q)*10*pi; % total time (5 periods)
 h = 1*10^(-9);  % time step
 IVPSolver = @eulerstep;
-ydot = @ydot_oppg3; % rhs-equations
+ydot = @ydot_V_DC; % rhs-equations
 r_0 = 3*10^(-3); % electrode distance to origo
 
 % Plot with initial conditions x_0=1mm, y_0=0, v_0=u_0=0

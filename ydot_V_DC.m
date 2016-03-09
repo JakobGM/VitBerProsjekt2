@@ -1,4 +1,4 @@
-function z=ydot_oppg3(t,y)
+function z=ydot_V_DC(t,y)
 % Right-hand side of particle ODE's from oppg3
 % constants
 V_DC = 5; % DC-voltage

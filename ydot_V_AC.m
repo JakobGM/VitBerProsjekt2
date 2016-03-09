@@ -1,8 +1,10 @@
-function z=ydot_oppg4(t,y)
+function z=ydot_V_AC(t, y, V_DC, V_AC)
 % Right-hand side of particle ODE's from oppg3
 % constants
-V_DC = 5; % DC-voltage
-V_AC = 45; % AC-voltage
+if nargin < 3
+    V_DC = 5; % DC-voltage
+    V_AC = 45; % AC-voltage
+end
 w = 1*10^7; % angular frequency
 m = 28*1.66*10^(-27); % particle mass
 q = 1.60*10^(-19); % particle charge
