@@ -23,7 +23,7 @@ xlabel('x','FontSize',fs); ylabel('y','FontSize',fs);
 head=line('color','r','Marker','.','markersize',20, ...
     'xdata',[],'ydata',[]);
 
-% analytic solution for y_0=0
+% analytic solution for x_0=1, y_0=0
 if ic(2) == 0
     V_DC = 5; % DC-voltage
     m = 28*1.66*10^(-27); % particle mass
