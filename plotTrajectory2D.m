@@ -1,4 +1,4 @@
-function plotTrajectory2D(T, h, p, ic, IVPSolver, ydot)
+function plotTrajectory2D(T, h, p, ic, r_0, IVPSolver, ydot)
 % Plot trajectory of object/particle, calculated from initial conditions, 
 % IVPSolver and rhs-equations in ydot with time step h, with steps per 
 % point plottet p over total time T
@@ -14,10 +14,20 @@ for i=1:n,
     t = t+h;
 end
 
-%plot the trajectories
+% plot the trajectories
+hold on;
 fs = 12; % font size
 plot(Y(:,1),Y(:,2),'k');
 xlabel('x','FontSize',fs); ylabel('y','FontSize',fs);
+
+% figure style
+axisLimit = 4e-3; r_0 = 3e-3; % r_0: electrode distance to origo
+plot([-r_0 r_0], [0 0], 'r.', ... % positive electrodes
+	   [0 0], [-r_0 r_0], 'b.', 'markersize', 30); % negative electrodes
+axis([-axisLimit axisLimit -axisLimit axisLimit]); % freeze axes
+grid on;
+line([-axisLimit axisLimit], [0 0], 'color', 'k', 'linewidth', 0.5);
+line([0 0], [-axisLimit axisLimit], 'color', 'k', 'linewidth', 0.5);
 
 % animate
 head=line('color','r','Marker','.','markersize',20, ...
@@ -54,5 +64,7 @@ else
     end
 
 end
+
+hold off;
 
 end

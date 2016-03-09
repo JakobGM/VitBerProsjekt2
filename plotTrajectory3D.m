@@ -1,4 +1,4 @@
-function plotTrajectory3D(T, h, p, ic, IVPSolver, ydot)
+function plotTrajectory3D(T, h, p, ic, r_0, IVPSolver, ydot)
 % Plot trajectory of object/particle, calculated from initial conditions, 
 % IVPSolver and rhs-equations in ydot with time step h, with steps per 
 % point plottet p over total time T
@@ -20,6 +20,21 @@ z_pos = linspace(ic(3),ic(6)*T,n+1);
 fs = 12; % font size
 plot3(Y(:,1),Y(:,2),z_pos,'k');
 xlabel('x','FontSize',fs); ylabel('y','FontSize',fs);
+
+% figure style
+axisLimitXY = 4*10^(-3);
+r_0 = 3*10^(-3); % r_0: electrode distance to origo
+figure(1);
+hold on;
+plot3([-r_0 -r_0], [0 0], [0 0.1], 'r', ...
+      [r_0 r_0], [0 0], [0 0.1], 'r', ... % positive electrodes
+      [0 0], [-r_0 -r_0], [0 0.1], 'b', ...
+      [0 0], [r_0 r_0], [0 0.1], 'b', 'linewidth', 2); % negative electrodes
+fill3(r_0/2*cos(linspace(0,2*pi,60)),r_0/2*sin(linspace(0,2*pi,60)), ...
+    ones(1,60)*0.1,'g','FaceAlpha',0.5);
+view(-155,10);
+axis([-axisLimitXY axisLimitXY -axisLimitXY axisLimitXY 0 0.1]);
+grid on;
 
 % animate
 head=line('color','r','Marker','.','markersize',20, ...
