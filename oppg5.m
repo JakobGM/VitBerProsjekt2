@@ -3,7 +3,11 @@
 clear;
 close all;
 
-T = 20*10^(-6); % total time
+V_DC = 5; % DC-voltage
+m = 28*1.66*10^(-27); % particle mass
+q = 1.60*10^(-19); % particle charge
+r_0 = 3*10^(-3); % electrode distance to origo
+T = sqrt(m*r_0^2/2/V_DC/q)*10*pi; % total time (5 periods)
 h = 1*10^(-9);  % time step
 IVPSolver = @eulerstep;
 ydot = @ydot_oppg3; % rhs-equations

@@ -25,10 +25,6 @@ analyticSolutionX = 5*10^(-4) * ((exp( sqrt(a)*analyticT)) + ...
                                  (exp(-sqrt(a)*analyticT)));
 
 % get maximum error
-for i = 1:n+1
-    if (analyticSolutionX(i) > 1e-3*0.999999 && analyticSolutionX(i) < 10e-3*1.000001)
-        disp(n*h);
-    end
-end
+maxE_x = max(Y(:,1)-analyticSolutionX)
 
 end

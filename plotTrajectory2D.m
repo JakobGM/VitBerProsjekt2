@@ -1,7 +1,7 @@
 function plotTrajectory2D(T, h, p, ic, r_0, IVPSolver, ydot)
-% Plot trajectory of object/particle, calculated from initial conditions, 
-% IVPSolver and rhs-equations in ydot with time step h, with steps per 
-% point plottet p over total time T
+% Plot trajectory of object/particle, calculated from initial conditions
+% (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
+% h, with steps per point plottet p over total time T
 
 n = round(T/h);
 t = 0;
