@@ -55,6 +55,10 @@ xPlot = -2*r_0:ds:2*r_0;
 yPlot = xPlot;
 grey = [0.4 0.4 0.4]; %For color definition in plots
 
+% Use LaTeX for figure titles, etc.
+set(groot, 'defaultAxesTickLabelInterpreter','latex');
+set(groot, 'defaultLegendInterpreter','latex');
+
 [xGrid, yGrid] = meshgrid(xPlot, yPlot);
 V_qPlot = V_q(xGrid, yGrid);
 E_qxPlot = E_qx(xGrid, yGrid);
@@ -62,13 +66,14 @@ E_qyPlot = E_qy(xGrid, yGrid);
 
 %Plotting the quadrupole point charges
 pointChargeFieldFigure = figure;
-contour(xGrid, yGrid, V_qPlot)
+V_qFig = contour(xGrid, yGrid, V_qPlot);
 hold on
 vecPlot1 = streamslice(xGrid, yGrid, E_qxPlot, E_qyPlot);
 set(vecPlot1, 'Color', grey)
 %Point charges
-plot([pos1(1) pos3(1)], [pos1(2) pos3(2)], 'r.', 'markersize', 30)
-plot([pos2(1) pos4(1)], [pos2(2) pos4(2)], 'b.', 'markersize', 30)
+posFig = plot([pos1(1) pos3(1)], [pos1(2) pos3(2)], 'r.', 'markersize', 30);
+negFig = plot([pos2(1) pos4(1)], [pos2(2) pos4(2)], 'b.', 'markersize', 30);
+legend([posFig, negFig],  'Positiv linjeladning',  'Negativ linjeladning');
 
 %Plotting the hyperbolic approximation
 hyperbolicFieldFigure = figure;
@@ -80,8 +85,9 @@ hold on
 vecPlot2 = streamslice(xGrid, yGrid, E_hxPlot, E_hyPlot);
 set(vecPlot2, 'Color', grey)
 %Point charges
-plot([pos1(1) pos3(1)], [pos1(2) pos3(2)], 'r.', 'markersize', 30)
-plot([pos2(1) pos4(1)], [pos2(2) pos4(2)], 'b.', 'markersize', 30)
+posFig2 = plot([pos1(1) pos3(1)], [pos1(2) pos3(2)], 'r.', 'markersize', 30);
+negFig2 = plot([pos2(1) pos4(1)], [pos2(2) pos4(2)], 'b.', 'markersize', 30);
+legend([posFig2, negFig2],  'Positiv linjeladning',  'Negativ linjeladning');
 
 %Plotting a comparison between the two method
 r_0Comparison = r_0;
