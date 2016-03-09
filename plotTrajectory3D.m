@@ -18,13 +18,12 @@ z_pos = linspace(ic(3),ic(6)*T,n+1);
 
 %plot the trajectories
 fs = 12; % font size
+figure();
 plot3(Y(:,1),Y(:,2),z_pos,'k');
 xlabel('x','FontSize',fs); ylabel('y','FontSize',fs);
 
 % figure style
 axisLimitXY = 4*10^(-3);
-r_0 = 3*10^(-3); % r_0: electrode distance to origo
-figure(1);
 hold on;
 plot3([-r_0 -r_0], [0 0], [0 0.1], 'r', ...
       [r_0 r_0], [0 0], [0 0.1], 'r', ... % positive electrodes
