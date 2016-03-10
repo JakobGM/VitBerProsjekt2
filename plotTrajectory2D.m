@@ -4,15 +4,14 @@ function plotTrajectory2D(T, h, p, ic, IVPSolver, ydot)
 % h, with steps per point plottet p over total time T
 
 r_0 = 3e-3; % electrode distance to origo
-n = round(T/h);
-t = 0;
-Y = zeros(n+1,length(ic)); % matrix for storing x, y, u and v values
+n = round(T/h)+1;
+t = linspace(0,T,n);
+Y = zeros(n,length(ic)); % matrix for storing x, y, u and v values
 Y(1,:) = ic;
 
 % get data points
-for i=1:n,
-    Y(i+1,:) = IVPSolver(t,Y(i,:),h,ydot);
-    t = t+h;
+for i=1:n-1
+    Y(i+1,:) = IVPSolver(t(i),Y(i,:),h,ydot);
 end
 
 % plot the trajectories
@@ -41,17 +40,16 @@ if ic(2) == 0
     m = 28*1.66e-27; % particle mass
     q = 1.60e-19; % particle charge
     a = 2*V_DC*q/(m*r_0^2);
-    analyticT = linspace(0,T,n+1);
-    analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);
+    analyticSolX = ic(1)*cos(sqrt(a)*t);
                                  
     head2=line('color','c','Marker','.','markersize',15, ...
         'xdata',[],'ydata',[]);
     legend([head head2], {'$N_2^+$', '$N_2^+$ analytic'}, ...
         'Interpreter','latex');
     
-    for i=1:p:n+1,
+    for i=1:p:n
         set(head,'XData',Y(i,1),'YData',Y(i,2));
-        set(head2,'XData',analyticSolutionX(i),'YData',0);
+        set(head2,'XData',analyticSolX(i),'YData',0);
         drawnow; pause(h*p);
     end
     
@@ -59,12 +57,20 @@ if ic(2) == 0
 else
     legend(head,{'$N_2^+$'},'Interpreter','latex');
     
-    for i=1:p:n+1,
+    for i=1:p:n
         set(head,'XData',Y(i,1),'YData',Y(i,2));
         drawnow; pause(h*p);
     end
 
 end
+
+% test
+figure();
+plot(t,Y(:,1),'r','linewidth',1.5);
+hold on;
+plot(t,analyticSolX,'c--','linewidth',1.5);
+hold off;
+% test end
 
 hold off;
 

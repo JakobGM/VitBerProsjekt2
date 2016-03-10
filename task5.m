@@ -1,4 +1,4 @@
-% oppg5
+% Task 5
 % Plotting trajectory of N_2^+-particle in 3D
 clear;
 close all;
@@ -6,7 +6,7 @@ close all;
 ydot = @ydot_V_DC; % rhs-equations
 initialConditions = [1e-3, 0, 0, 0]; % [x_0, y_0, u_0, v_o]
 
-expValues = -10:0.1:-5;
+expValues = -10:0.1:-7;
 n = length(expValues);
 h = zeros(1,n);
 maxE_euler = zeros(1,n);
@@ -14,8 +14,8 @@ maxE_RK4 = zeros(1,n);
 
 for i = 1:n
     h(i) = 1*10^(expValues(i));  % time step
-    maxE_euler(i) = getMaxError(h(i), initialConditions, @eulerstep, ydot);
-    maxE_RK4(i) = getMaxError(h(i), initialConditions, @RK4, ydot);
+    maxE_euler(i) = getError(h(i), initialConditions, @eulerstep, ydot);
+    maxE_RK4(i) = getError(h(i), initialConditions, @RK4, ydot);
 end
 
 % test
