@@ -26,7 +26,7 @@ analyticT = linspace(0,T,n+1);
 analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);
 
 % test
-E_x = zeros(1,n+1);
+% E_x = zeros(1,n+1);
 for i = 1:n+1
     E_x(i) = abs(analyticSolutionX(i)-Y(i,1));
 end
@@ -36,7 +36,8 @@ end
 % test end
 
 % get maximum error
+maxE_x = abs(max(analyticSolutionX-Y(:,1)'));
 % maxE_x = abs(max(analyticSolutionX-Y(:,1)'));
-maxE_x = abs(Y(n+1,1) - analyticSolutionX(n+1));
+%maxE_x = abs(Y(n+1,1) - analyticSolutionX(n+1));
 
 end
