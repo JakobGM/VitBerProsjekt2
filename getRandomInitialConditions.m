@@ -1,20 +1,27 @@
-function ic = getRandomInitialConditions()
-% generating random initial distances to z-axis (maximum r_0/2)
-particleInitialPosRatioSquared = rand(1,1000).^2;
-particleInitialXRatioSquared = rand(1,1000).*particleInitialPosRatioSquared;
-particleInitialYRatio = particleInitialPosRatioSquared ...
-    - particleInitialXRatioSquared;
-particleInitialX = particleInitialXRatioSquared*r_0/2;
-particleInitialY = particleInitialYRatio*r_0/2;
+function ic = getRandomInitialConditions(r_0)
+% Returns 1000 sets of initial conditions [x_0 y_0 z_0 u_0 v_0 w_0]
 
-% generating random speed angles to the z-axis
-particleInitialAngleRatio = rand(1,1000);
-particleInitialAngle = particleInitialAngleRatio*2/180*pi;
+% Generating random initial distances to z-axis (maximum r_0/2)
+initialDistRatio = rand(1,1000);
+initialDistSquared = (initialDistRatio*r_0/2).^2;
+initialXSquaredRatio = rand(1,1000);
+initialYSquaredRatio = 1 - initialXSquaredRatio;
+initialX = sqrt(initialXSquaredRatio.*initialDistSquared);
+initialY = sqrt(initialYSquaredRatio.*initialDistSquared);
 
-% generating initial speed components
+% Generating random speed angles to the z-axis
+initialAngleRatio = rand(1,1000);
+initialAngle = initialAngleRatio*2/180*pi;
+
+% Generating initial speed components
 initialSpeedZ = 5000;
-initialSpeedXY = 5000*sin(paricleInitialAngle);
-particleInitialXSRatio = rand(1,1000)*initialSpeedXY;
-particleInitialYSRatio = particleInitialPosRatioSquared - particleInitialXRatioSquared;
+initialSpeedXYSquared = (initialSpeedZ*sin(initialAngle)).^2;
+initialSpeedXSquaredRatio = rand(1,1000);
+initialSpeedYSquaredRatio = 1 - initialSpeedXSquaredRatio;
+initialSpeedX = sqrt(initialSpeedXSquaredRatio.*initialSpeedXYSquared);
+initialSpeedY = sqrt(initialSpeedYSquaredRatio.*initialSpeedXYSquared);
+
+% Return initial conditions
+ic = [initialX, initialY, 0, initialSpeedX, initialSpeedY, initialSpeedZ];
 
 end

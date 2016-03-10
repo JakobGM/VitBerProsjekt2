@@ -2,8 +2,8 @@ function getDetectedPercentage(h, m)
 % Get the percentage detected of 1000 particles 
 
 r_0 = 3e-3; % electrode distance to origo
+ic = getRandomInitialConditions(r_0); % 1000 random initial conditions
 
-ic
 T = 20e-6;
 n = round(T/h)+1;
 t = linspace(0,T,n);
