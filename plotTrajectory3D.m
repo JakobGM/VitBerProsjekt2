@@ -1,28 +1,29 @@
-function plotTrajectory3D(T, h, p, ic, IVPSolver, ydot)
+function plotTrajectory3D(T, h, p, ic, IVPSolver)
 % Plot trajectory of object/particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
 
+V_DC = 5; V_AC = 45; % voltages
 r_0 = 3e-3; % electrode distance to origo
 n = round(T/h)+1;
 t = linspace(0,T,n);
 Y = zeros(n,length(ic)-2); % matrix for storing x, y, u and v values
 Y(1,:) = ic([1 2 4 5]);
 
-% get data points
+% Get data points
 for i=1:n-1
-    Y(i+1,:) = IVPSolver(t(i),Y(i,:),h,ydot);
+    Y(i+1,:) = IVPSolver(t(i), Y(i,:), h, V_DC, V_AC);
 end
 
 z_pos = linspace(ic(3),ic(6)*T,n);
 
-%plot the trajectories
+% Plot the trajectories
 fs = 12; % font size
 figure();
 plot3(Y(:,1),Y(:,2),z_pos,'k');
 xlabel('x','FontSize',fs); ylabel('y','FontSize',fs);
 
-% figure style
+% Figure style
 axisLimitXY = 4*10^(-3);
 hold on;
 plot3([-r_0 -r_0],[0 0],[0 0.1],'r', ...
@@ -35,7 +36,7 @@ view(-155,10);
 axis([-axisLimitXY axisLimitXY -axisLimitXY axisLimitXY 0 0.1]);
 grid on;
 
-% animate
+% Animate
 head=line('color','r','Marker','.','markersize',20, ...
 'xdata',[],'ydata',[],'zdata',[]);
 legend(head,{'$N_2^+$'},'Interpreter','latex','location','NorthEast');

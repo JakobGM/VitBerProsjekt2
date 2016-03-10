@@ -7,8 +7,13 @@ close all;
 
 T = 20e-6; % total time
 h = 1e-9;  % time step
+u = 1.66054e-27; % atomic mass unit
+atomicMass = 20:36;
+detectedPercentage = zeros(1, length(atomicMass));
 
-% Plot with initial conditions x_0=y_0=1mm, z_0=0, v_0=u_0=0, w_0=5000;
-initialConditions = [1e-3, 1e-3, 0, 0, 0, 5000];
+for i = 1:length(atomicMass)
+    mass = atomicMass(i)*u;
+    detectedPercentage(i) = getDetectedPercentage(h, mass);
+end
 
-plotTrajectory3D(T, h, plotSteps, initialConditions, IVPSolver, ydot);
+plot(detectedPercentage, atomicMass, 'o');

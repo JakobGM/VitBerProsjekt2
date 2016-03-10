@@ -1,8 +1,9 @@
-function plotTrajectory2D(T, h, p, ic, IVPSolver, ydot)
+function plotTrajectory2D(T, h, p, ic, IVPSolver)
 % Plot trajectory of object/particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
 
+V_DC = 5; V_AC = 0; % voltages
 r_0 = 3e-3; % electrode distance to origo
 n = round(T/h)+1;
 t = linspace(0,T,n);
@@ -11,7 +12,7 @@ Y(1,:) = ic;
 
 % get data points
 for i=1:n-1
-    Y(i+1,:) = IVPSolver(t(i),Y(i,:),h,ydot);
+    Y(i+1,:) = IVPSolver(t(i), Y(i,:), h, V_DC, V_AC);
 end
 
 % plot the trajectories

@@ -1,20 +1,23 @@
-function getDetectedPercentage(h, m)
+function percentage = getDetectedPercentage(h, m)
 % Get the percentage detected of 1000 particles 
 
-r_0 = 3e-3; % electrode distance to origo
-ic = getRandomInitialConditions(r_0); % 1000 random initial conditions
+ic = getRandomInitialConditions(); % 1000 random initial conditions
 
+% V_DC og V_AC = ??? - trenger fra tidligere oppg
+V_DC = 5; V_AC = 45; % voltages
 T = 20e-6;
 n = round(T/h)+1;
 t = linspace(0,T,n);
 Y = zeros(n,length(ic)-2); % matrix for storing x, y, u and v values
-Y(1,:) = ic([1 2 4 5]);
 
 % get data points
-for i=1:n-1
-    Y(i+1,:) = RK4(t(i),Y(i,:),h,@ydot_V_AC);
+stableCount = 0;
+for i = 1:1000;
+    Y(1,:) = [ic(1,i), ic(2,i), ic(4,i), ic(5,i)];
+    stable = getTrajectoryStability(T, h, Y(1,:), V_DC, V_AC, m);
+    if (stable) stableCount = stableCount+1; end
 end
 
-z_pos = linspace(ic(3),ic(6)*T,n);
+percentage = stableCount/10;
 
 end

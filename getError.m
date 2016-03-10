@@ -1,9 +1,9 @@
-function maxE_x = getError(h, ic, IVPSolver, ydot)
+function maxE_x = getError(h, ic, IVPSolver)
 % Plot trajectory of object/particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
 
-V_DC = 5; % DC-voltage
+V_DC = 5; V_AC = 0; % voltages
 m = 28*1.66e-27; % particle mass
 q = 1.60e-19; % particle charge
 r_0 = 3e-3; % electrode distance to origo
@@ -16,7 +16,7 @@ Y(1,:) = ic;
 
 % get data points
 for i=1:n,
-    Y(i+1,:) = IVPSolver(t(i),Y(i,:),h,ydot);
+    Y(i+1,:) = IVPSolver(t(i), Y(i,:), h, V_DC, V_AC);
 end
 
 % analytic solution for x_0=1mm, y_0=0 after 5 periods

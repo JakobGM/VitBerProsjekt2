@@ -1,5 +1,5 @@
 % Task 5
-% Plotting trajectory of N_2^+-particle in 3D
+% Plotting error of numerical solutions for different time steps
 clear;
 close all;
 
@@ -14,8 +14,8 @@ maxE_RK4 = zeros(1,n);
 
 for i = 1:n
     h(i) = 1*10^(expValues(i));  % time step
-    maxE_euler(i) = getError(h(i), initialConditions, @eulerstep, ydot);
-    maxE_RK4(i) = getError(h(i), initialConditions, @RK4, ydot);
+    maxE_euler(i) = getError(h(i), initialConditions, @eulerstep);
+    maxE_RK4(i) = getError(h(i), initialConditions, @RK4);
 end
 
 % test
@@ -24,4 +24,4 @@ end
 % maxE_RK4 = getMaxError(h, initialConditions, @RK4, ydot);
 % test end
 
-loglog(h,maxE_euler,h,maxE_RK4);
+loglog(h, maxE_euler, 'o', h, maxE_RK4, 'o');

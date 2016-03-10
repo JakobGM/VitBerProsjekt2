@@ -1,11 +1,14 @@
 function z = ydot_V_DC(t,y)
-% Right-hand side of particle ODE's from oppg3
+
+%%%%%%%% FASES UT, BRUK ydot() %%%%%%%%
+
+% Right-hand side of particle ODE's from task 3
 % Input (t,y), where t is the time and y = [x, y, u, v]
 % Returns vector z = [u v a_x a_y]
 
 % Constants
 V_DC = 5; % DC-voltage
-u = 1.66054e-27; % 1 atomic mass unit
+u = 1.66054e-27; % atomic mass unit
 m = 28*u; % particle mass
 q = 1.60217646e-19; % particle charge
 r_0 = 3e-3; % electrode distance to origo
