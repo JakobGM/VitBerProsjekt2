@@ -12,10 +12,14 @@ h = zeros(1,n);
 maxE_euler = zeros(1,n);
 maxE_RK4 = zeros(1,n);
 
-for i = 1:n
-    h(i) = 1*10^(expValues(i));  % time step
-    maxE_euler(i) = getMaxError(h(i), initialConditions, @eulerstep, ydot);
-    maxE_RK4(i) = getMaxError(h(i), initialConditions, @RK4, ydot);
-end
+% for i = 1:n
+%     h(i) = 1*10^(expValues(i));  % time step
+%     maxE_euler(i) = getMaxError(h(i), initialConditions, @eulerstep, ydot);
+%     maxE_RK4(i) = getMaxError(h(i), initialConditions, @RK4, ydot);
+% end
 
-loglog(h,maxE_euler,h,maxE_RK4);
+h = 1e-9;  % time step
+maxE_euler = getMaxError(h, initialConditions, @eulerstep, ydot);
+maxE_RK4 = getMaxError(h, initialConditions, @RK4, ydot);
+
+%loglog(h,maxE_euler,h,maxE_RK4);

@@ -24,12 +24,12 @@ xlabel('x','FontSize',fs); ylabel('y','FontSize',fs);
 
 % figure style
 axisLimit = 4e-3; r_0 = 3e-3; % r_0: electrode distance to origo
-plot([-r_0 r_0], [0 0], 'r.', ... % positive electrodes
-	   [0 0], [-r_0 r_0], 'b.', 'markersize', 30); % negative electrodes
+plot([-r_0 r_0],[0 0],'r.', ... % positive electrodes
+	 [0 0],[-r_0 r_0],'b.','markersize',30); % negative electrodes
 axis([-axisLimit axisLimit -axisLimit axisLimit]); % freeze axes
 grid on;
-line([-axisLimit axisLimit], [0 0], 'color', 'k', 'linewidth', 0.5);
-line([0 0], [-axisLimit axisLimit], 'color', 'k', 'linewidth', 0.5);
+line([-axisLimit axisLimit],[0 0],'color','k','linewidth',0.5);
+line([0 0],[-axisLimit axisLimit],'color','k','linewidth',0.5);
 
 % animate
 head=line('color','r','Marker','.','markersize',20, ...
@@ -41,7 +41,7 @@ if ic(2) == 0
     m = 28*1.66e-27; % particle mass
     q = 1.60e-19; % particle charge
     a = 2*V_DC*q/(m*r_0^2);
-    analyticT = linspace(0, T, n+1);
+    analyticT = linspace(0,T,n+1);
     analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);
                                  
     head2=line('color','c','Marker','.','markersize',15, ...

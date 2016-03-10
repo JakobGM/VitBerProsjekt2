@@ -28,11 +28,9 @@ analyticSolutionX = ic(1)*cos(sqrt(a)*analyticT);
 % test
 E_x = zeros(1,n+1);
 for i = 1:n+1
-    E_x = abs(analyticSolutionX(i)-Y(i,1));
+    E_x = abs(analyticSolutionX-Y(i,1);
 end
-time = linspace(0,T,n+1);
-figure;
-plot(time,E_x);
+
 % test
 
 % get maximum error
