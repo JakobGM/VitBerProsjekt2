@@ -5,10 +5,11 @@ if nargin < 3
     V_DC = 5; % DC-voltage
     V_AC = 45; % AC-voltage
 end
-w = 1*10^7; % angular frequency
-m = 28*1.66*10^(-27); % particle mass
-q = 1.60*10^(-19); % particle charge
-r_0 = 3*10^(-3); % electrode distance to origo
+w = 1e7; % angular frequency
+u = 1.66054e-27; % 1 atomic mass unit
+m = 28*u; % particle mass
+q = 1.60217646e-19; % particle charge
+r_0 = 3e-3; % electrode distance to origo
 
 % positions
 x_pos = y(1);
