@@ -41,36 +41,35 @@ if ic(2) == 0
     q = 1.60e-19; % particle charge
     a = 2*V_DC*q/(m*r_0^2);
     analyticSolX = ic(1)*cos(sqrt(a)*t);
-                                 
+
     head2=line('color','c','Marker','.','markersize',15, ...
         'xdata',[],'ydata',[]);
     legend([head head2], {'$N_2^+$', '$N_2^+$ analytic'}, ...
         'Interpreter','latex');
-    
+
     for i=1:p:n
         set(head,'XData',Y(i,1),'YData',Y(i,2));
         set(head2,'XData',analyticSolX(i),'YData',0);
         drawnow; pause(h*p);
     end
-    
+
+    % Comparison with analytic solution
+    figure();
+    plot(t,Y(:,1),'r','linewidth',1.5);
+    hold on;
+    plot(t,analyticSolX,'c--','linewidth',1.5);
+    hold off;
+
 % without analytic
 else
     legend(head,{'$N_2^+$'},'Interpreter','latex');
-    
+
     for i=1:p:n
         set(head,'XData',Y(i,1),'YData',Y(i,2));
         drawnow; pause(h*p);
     end
 
 end
-
-% test
-figure();
-plot(t,Y(:,1),'r','linewidth',1.5);
-hold on;
-plot(t,analyticSolX,'c--','linewidth',1.5);
-hold off;
-% test end
 
 hold off;
 

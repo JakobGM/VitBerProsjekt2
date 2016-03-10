@@ -1,26 +1,27 @@
 % Task 3
-% Plotting trajectories of N_2^+-particle in 2D
+% Plotting trajectories of N_2^+-particle in 2D with the "forward Euler" method
 clear;
 close all;
 
-% test
+% Physical test parameters
 V_DC = 5; % DC-voltage
-m = 28*1.66e-27; % particle mass
-q = 1.60e-19; % particle charge
-r_0 = 3e-3; % electrode distance to origo
-T = sqrt(m*r_0^2/(2*V_DC*q))*10*pi; % total time (5 periods)
-% test end
+u = 1.66054e-27; % 1 atomic mass unit
+m = 28*u; % particle mass
+q = 1.60217646e-19; % particle charge
+r_0 = 3e-3; % electrode distance from origo
+T = sqrt(m*r_0^2/(2*V_DC*q))*10*pi; % total time (5 periods), approximately 20 microseconds
 
-%T = 20e-6; % total time
+% Method parameters
 h = 1e-7;  % time step
 plotSteps = 1; % steps per point plotted
-IVPSolver = @RK4;
+IVPSolver = @eulerstep;
 ydot = @ydot_V_DC; % rhs-equations
 
-% Plot with initial conditions x_0=y_0=1mm, v_0=u_0=0
-% initialConditions = [1e-3, 1e-3, 0, 0];
+% Plot with initial conditions x_0 = y_0 = 1mm, v_0 = u_0 = 0
+initialConditions1 = [1e-3, 1e-3, 0, 0];
 
-% Plot with initial conditions x_0=1mm, y_0=0, v_0=u_0=0
-initialConditions = [1e-3, 0, 0, 0];
+% Plot with initial conditions x_0 = 1mm, y_0 = 0, v_0 = u_0 = 0
+initialConditions2 = [1e-3, 0, 0, 0];
 
-plotTrajectory2D(T, h, plotSteps, initialConditions, IVPSolver, ydot);
+plotTrajectory2D(T, h, plotSteps, initialConditions1, IVPSolver, ydot);
+plotTrajectory2D(T, h, plotSteps, initialConditions2, IVPSolver, ydot);
