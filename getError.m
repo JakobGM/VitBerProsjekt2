@@ -10,33 +10,34 @@ q = 1.60217646e-19; % partinitialConditionsle charge
 u = 1.66054e-27; % atomic mass unit
 m = 28*u; % particle mass
 r_0 = 3e-3; % electrode distance to origo
-omega = 2*V_DC*q/(m*r_0^2);
-T = sqrt(1/omega)*10*pi; % total time (5 periods)
+a = 2*V_DC*q/(m*r_0^2);
+T = sqrt(1/a)*10*pi; % total time (5 periods)
 
 % Method parameters
 n = round(T/h) + 1;
 t = linspace(0,n*h,n);
-Y = zeros(n,length(initialConditions));  % matrix for storing x, y, u and v values
-Y(1,:) = initialConditions;
+W = zeros(n, length(initialConditions));  % matrix for storing x, y, u and v values
+W(1,:) = initialConditions;
 
 % Get data points
 for i=1:(n-1)
-    Y(i+1,:) = IVPSolver(t(i), Y(i,:), h, V_DC, V_AC);
+    W(i+1,:) = IVPSolver(t(i), W(i,:), h, V_DC, V_AC);
 end
 
 % Analytic solution for x_0=1mm, y_0=0 after 5 periods
-analyticSolX = initialConditions(1)*cos(sqrt(omega)*t);%*t(end));
+analyticSolX = initialConditions(1)*cos(sqrt(a)*t);%*t(end));
 
 % test
 % E_x = zeros(1,n);
 % for i = 1:n
-%     E_x(i) = abs(analyticSolX(i)-Y(i,1));
+%     E_x(i) = abs(analyticSolX(i)-W(i,1));
 % end
 % figure;
 % plot(t,E_x);
 % test end
 
 % get error after five periods
-maxE_x = abs(Y(end,1) - analyticSolX(end));
+maxE_x = abs(W(end,1) - analyticSolX(end));
+% maxE_x = max(abs(Y(:,1)'-analyticSolX)); % største feil, test
 
 end
