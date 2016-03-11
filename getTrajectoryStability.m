@@ -8,15 +8,14 @@ if nargin == 5
     m = 28*u; % particle mass
 end
 
-n = round(T/h);
-t = 0;
+n = round(T/h) + 1;
+t = linspace(0, n*h, n);
 Y = zeros(n+1, length(ic));  % matrix for storing x, y, u and v values
 Y(1,:) = ic;
 
 % Get data points
-for i = 1:n,
-    Y(i+1,:) = RK4(t, Y(i,:), h, V_DC, V_AC, m);
-    t = t+h;
+for i = 1:n-1,
+    Y(i+1,:) = RK4(t(i), Y(i,:), h, V_DC, V_AC, m);
 end
 
 % find if particle leaves accepted area

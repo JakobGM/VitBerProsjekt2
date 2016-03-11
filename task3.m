@@ -14,7 +14,7 @@ T = sqrt(m*r_0^2/(2*V_DC*q))*10*pi; % total time (5 periods), approximately 20 m
 % Method parameters
 h = 1e-7;  % time step
 plotSteps = 1; % steps per point plotted
-IVPSolver = @eulerstep;
+IVPSolver = @RK4;
 
 % Plot with initial conditions x_0 = y_0 = 1mm, v_0 = u_0 = 0
 initialConditions1 = [1e-3, 1e-3, 0, 0];
