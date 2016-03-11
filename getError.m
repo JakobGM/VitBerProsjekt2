@@ -15,7 +15,7 @@ T = sqrt(1/omega)*10*pi; % total time (5 periods)
 
 % Method parameters
 n = round(T/h) + 1;
-t = linspace(0,T,n);
+t = linspace(0,n*h,n);
 Y = zeros(n,length(initialConditions));  % matrix for storing x, y, u and v values
 Y(1,:) = initialConditions;
 
