@@ -11,29 +11,29 @@ T = sqrt(m*r_0^2/(2*V_DC*q))*10*pi; % total time (5 periods)
 
 n = round(T/h);
 t = linspace(0,T,n);
-Y = zeros(n+1,length(ic));  % matrix for storing x, y, u and v values
+Y = zeros(n,length(ic));  % matrix for storing x, y, u and v values
 Y(1,:) = ic;
 
 % get data points
-for i=1:n,
+for i=1:n-1,
     Y(i+1,:) = IVPSolver(t(i), Y(i,:), h, V_DC, V_AC);
 end
 
 % analytic solution for x_0=1mm, y_0=0 after 5 periods
 a = 2*V_DC*q/(m*r_0^2);
-analyticSolX = ic(1)*cos(sqrt(a)*t(end));
+analyticSolX = ic(1)*cos(sqrt(a)*t);%*t(end));
 
 % test
-% E_x = zeros(1,n+1);
-% for i = 1:n+1
-%     E_x(i) = abs(analyticSolutionX(i)-Y(i,1));
-% end
-% time = linspace(0,T,n+1);
-% figure;
-% plot(time,E_x);
+E_x = zeros(1,n);
+for i = 1:n
+    E_x(i) = abs(analyticSolX(i)-Y(i,1));
+end
+time = linspace(0,T,n+1);
+figure;
+plot(t,E_x);
 % test end
 
 % get error after five periods
-maxE_x = abs(Y(end,1) - analyticSolX);
+maxE_x = abs(Y(end,1) - analyticSolX(end));
 
 end
