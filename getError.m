@@ -1,4 +1,5 @@
-function maxE_x = getError(h, initialConditions, IVPSolver)
+function [maxErrorX, relativeErrorX] = getError(h, initialConditions, ...
+    IVPSolver)
 % Plot trajectory of particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
@@ -37,7 +38,8 @@ analyticSolX = initialConditions(1)*cos(sqrt(a)*t);%*t(end)); % test
 % test end
 
 % Get error after five periods
-%maxE_x = abs(W(end,1) - analyticSolX(end));
- maxE_x = max(abs(W(:,1)'-analyticSolX)); % største feil, test
+maxErrorX = abs(W(end,1) - analyticSolX(end));
+% [maxErrorX, index] = max(abs(W(:,1)'-analyticSolX)); % største feil, test
+ relativeErrorX = maxErrorX/analyticSolX(end); % test: fjern ved bruk av største feil
 
 end
