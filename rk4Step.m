@@ -9,7 +9,7 @@ if nargin == 5;
     s3 = lhs_dot(t + h/2, w + (h/2)*s2, V_DC, V_AC);
     s4 = lhs_dot(t + h, w + h*s3, V_DC, V_AC);
 
-    new_w = w+(h/6)*(s1 + 2*s2 + 2*s3 + s4);
+    new_w = w + (h/6)*(s1 + 2*s2 + 2*s3 + s4);
 
 elseif nargin == 6
     s1 = lhs_dot(t, w, V_DC, V_AC, m);

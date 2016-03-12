@@ -1,4 +1,4 @@
-function new_w = lhs_dot(t, w, V_DC, V_AC, m)
+function w_dot = lhs_dot(t, w, V_DC, V_AC, m)
 % Right-hand side of particle ODE's from Task 3
 
 % Constants
@@ -18,19 +18,14 @@ y_pos = w(2);
 E_x = -(V_DC + V_AC*cos(omega*t))*2*x_pos/r_0^2;
 E_y =  (V_DC + V_AC*cos(omega*t))*2*y_pos/r_0^2;
 
-% Velocities
-u = w(3);
-v = w(4);
-
-% Form the equations
-new_w  = zeros(1,4);
+w_dot  = zeros(1,4);
 
 % Velocities
-new_w(1) = u;
-new_w(2) = v;
+w_dot(1) = w(3);
+w_dot(2) = w(4);
 
 % Accelerations
-new_w(3) = q*E_x/m;
-new_w(4) = q*E_y/m;
+w_dot(3) = q*E_x/m;
+w_dot(4) = q*E_y/m;
 
 end

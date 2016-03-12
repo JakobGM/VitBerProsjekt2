@@ -40,7 +40,7 @@ if initialConditions(2) == 0
     V_DC = 5; % DC-voltage
     m = 28*1.66e-27; % particle mass
     q = 1.60e-19; % particle charge
-    a = 2*V_DC*q/(m*r_0^2);
+    a = 2*V_DC*q/(m*r_0^2); % constant
     analyticSolX = initialConditions(1)*cos(sqrt(a)*t);
 
     head2=line('color', 'c', 'Marker', '.', 'markersize', 15, ...
