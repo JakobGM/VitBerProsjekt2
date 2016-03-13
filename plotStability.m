@@ -5,7 +5,7 @@ step_V_AC = 0.2; % step size V_AC
 step_V_DC = 0.2; % step size V_DC
 values = []; % line between stable and unstable
 T = 0.00002; % total time
-h = 1e-7; % step size for numeric method (RK4)
+h = 10^(-7.5); % step size for numeric method (RK4)
 ic = [0.001, 0.001, 0, 0]; % initial conditions (x,y)
 u = 1.66054e-27; % atomic mass unit
 m = 28*u; % particle mass
@@ -43,7 +43,9 @@ for V_DC = 1 : step_V_DC : 8.5
 
 end
 
+fs = 12; % font size
 plot(values(:,1), values(:,2), 'k.');
-xlabel('V_{AC}'); ylabel('V_{DC}');
+title('Stabilitets-diagram', 'FontSize', fs+4);
+xlabel('V_{AC}', 'FontSize', fs); ylabel('V_{DC}', 'FontSize', fs);
 
 end
