@@ -3,8 +3,8 @@ function percentage = getDetectedPercentage(h, m)
 
 ic = getRandomInitialConditions(); % 1000 random initial conditions
 
-% V_DC og V_AC = ??? - trenger fra tidligere oppg
-V_DC = 5; V_AC = 45; % voltages
+V_DC = 7.65; % direct current voltage
+V_AC = 46.25; % alternating current voltage
 T = 20e-6;
 n = round(T/h)+1;
 t = linspace(0,T,n);

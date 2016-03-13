@@ -8,7 +8,7 @@ close all;
 T = 20e-6; % total time
 h = 1e-7;  % time step
 u = 1.66054e-27; % atomic mass unit
-atomicMass = 20:36;
+atomicMass = 26:32;
 detectedPercentage = zeros(1, length(atomicMass));
 
 for i = 1:length(atomicMass)

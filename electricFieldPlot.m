@@ -94,6 +94,7 @@ contour(xGrid.*1e3, yGrid.*1e3, V_hPlot);
 hold on
 vecPlot2 = streamslice(xGrid.*1e3, yGrid.*1e3, E_hxPlot, E_hyPlot);
 set(vecPlot2, 'Color', grey)
+
 % Point charges
 posFig2 = plot([pos1(1) pos3(1)].*1e3, [pos1(2) pos3(2)].*1e3, 'r.', 'markersize', 30);
 negFig2 = plot([pos2(1) pos4(1)].*1e3, [pos2(2) pos4(2)].*1e3, 'b.', 'markersize', 30);
