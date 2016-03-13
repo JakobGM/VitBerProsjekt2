@@ -27,6 +27,10 @@ end
 
 % plot the trajectories
 fs = 12; % font size
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
+
 plot(z_pos(:), W(:,1), 'r'); % plot x-values
 hold on;
 plot(z_pos(:), W(:,2), 'b'); % plot y-values

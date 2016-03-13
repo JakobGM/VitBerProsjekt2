@@ -20,13 +20,17 @@ end
 
 % plot the trajectories
 fs = 12; % font size
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
+
 plot(z_pos(:), W(:,1), 'r'); % plot x-values
 hold on;
 plot(z_pos(:), W(:,2), 'b'); % plot y-values
-xlabel('Avstand fra z-aksen [m]', 'FontSize', fs);
-legend('x-posisjon', 'y-posisjon', 'Location', 'northeast');
-ylabel('Avstand fra x/y-aksen [m]', 'FontSize', fs);
-title('Ustabil bane', 'FontSize', fs+4);
+xlabel('Avstand fra $z$-aksen [m]', 'FontSize', fs);
+legend('$x$-posisjon', '$y$-posisjon', 'Location', 'northeast');
+ylabel('Avstand fra $x$/$y$-aksen [m]', 'FontSize', fs);
+title('Stabil bane', 'FontSize', fs+4);
 axis([0, 0.1, -r_0, r_0]);
 
 
