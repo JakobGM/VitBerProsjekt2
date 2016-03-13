@@ -1,39 +1,45 @@
-function maxE_x = getError(h, ic, IVPSolver)
-% Plot trajectory of object/particle, calculated from initial conditions
+function [maxErrorX, relativeErrorX] = getError(h, initialConditions, ...
+    IVPSolver)
+% Plot trajectory of particle, calculated from initial conditions
 % (x_0, y_0, u_0, v_0), IVPSolver and rhs-equations in ydot with time step
 % h, with steps per point plottet p over total time T
 
-V_DC = 5; V_AC = 0; % voltages
-m = 28*1.66e-27; % particle mass
-q = 1.60e-19; % particle charge
+% Physical parameters
+V_DC = 5; % direct current voltage
+V_AC = 0; % alternating current voltage
+q = 1.60217646e-19; % particle charge
+u = 1.66054e-27; % atomic mass unit
+m = 28*u; % particle mass
 r_0 = 3e-3; % electrode distance to origo
-T = sqrt(m*r_0^2/(2*V_DC*q))*10*pi; % total time (5 periods)
+a = 2*V_DC*q/(m*r_0^2); % constant
+T = sqrt(1/a)*10*pi; % total time (5 periods)
 
-n = round(T/h);
-t = linspace(0,T,n);
-Y = zeros(n+1,length(ic));  % matrix for storing x, y, u and v values
-Y(1,:) = ic;
+% Method parameters
+n = round(T/h) + 1;
+t = linspace(0,n*h,n);
+W = zeros(n, length(initialConditions));  % matrix for storing x, y, u and v values
+W(1,:) = initialConditions;
 
-% get data points
-for i=1:n,
-    Y(i+1,:) = IVPSolver(t(i), Y(i,:), h, V_DC, V_AC);
+% Get data points
+for i=1:(n-1)
+    W(i+1,:) = IVPSolver(t(i), W(i,:), h, V_DC, V_AC);
 end
 
-% analytic solution for x_0=1mm, y_0=0 after 5 periods
-a = 2*V_DC*q/(m*r_0^2);
-analyticSolX = ic(1)*cos(sqrt(a)*t(end));
+% Analytic solution for x_0=1mm, y_0=0 after 5 periods
+analyticSolX = initialConditions(1)*cos(sqrt(a)*t);%*t(end)); % test
 
 % test
-% E_x = zeros(1,n+1);
-% for i = 1:n+1
-%     E_x(i) = abs(analyticSolutionX(i)-Y(i,1));
+% E_x = zeros(1,n);
+% for i = 1:n
+%     E_x(i) = abs(analyticSolX(i)-W(i,1));
 % end
-% time = linspace(0,T,n+1);
 % figure;
-% plot(time,E_x);
+% plot(t,E_x);
 % test end
 
-% get error after five periods
-maxE_x = abs(Y(end,1) - analyticSolX);
+% Get error after five periods
+maxErrorX = abs(W(end,1) - analyticSolX(end));
+% [maxErrorX, index] = max(abs(W(:,1)'-analyticSolX)); % største feil, test
+ relativeErrorX = maxErrorX/analyticSolX(end); % test: fjern ved bruk av største feil
 
 end

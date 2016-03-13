@@ -1,5 +1,5 @@
 function percentage = getDetectedPercentage(h, m)
-% Get the percentage detected of 1000 particles 
+% Get the percentage detected of 1000 particles sent into the apparatus
 
 ic = getRandomInitialConditions(); % 1000 random initial conditions
 
