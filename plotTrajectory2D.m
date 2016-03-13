@@ -5,13 +5,13 @@ function plotTrajectory2D(T, h, p, initialConditions, IVPSolver)
 
 V_DC = 5; V_AC = 0; % voltages
 r_0 = 3e-3; % electrode distance to origo
-n = round(T/h) + 1;
-t = linspace(0, n*h, n);
-W = zeros(n, length(initialConditions)); % matrix for storing x, y, u and v values
+n = round(T/h);
+t = linspace(0, n*h, n+1);
+W = zeros(n, length(initialConditions)); % matrix for x, y, u and v values
 W(1,:) = initialConditions;
 
 % get data points
-for i=1:n-1
+for i=1:n
     W(i+1,:) = IVPSolver(t(i), W(i,:), h, V_DC, V_AC);
 end
 

@@ -1,4 +1,5 @@
-function stable = getTrajectoryStability(T, h, ic, V_DC, V_AC, m)
+function stable = getTrajectoryStability(T, h, initialConditions, V_DC, ...
+    V_AC, m)
 % Find if particle with initial conditions (x_0, y_0, u_0, v_0) has a
 % stable trajectory
 
@@ -7,13 +8,13 @@ if nargin == 5
     m = 28*u; % particle mass
 else
 
-n = round(T/h) + 1;
-t = linspace(0, n*h, n);
-W = zeros(n+1, length(ic));  % matrix for storing x, y, u and v values
-W(1,:) = ic;
+n = round(T/h);
+t = linspace(0, n*h, n+1);
+W = zeros(n, length(initialConditions));  % matrix for x, y, u and v values
+W(1,:) = initialConditions;
 
 % Get data points
-for i = 1:n-1,
+for i = 1:n,
     W(i+1,:) = rk4Step(t(i), W(i,:), h, V_DC, V_AC, m);
 end
 

@@ -15,13 +15,13 @@ a = 2*V_DC*q/(m*r_0^2); % constant
 T = sqrt(1/a)*10*pi; % total time (5 periods)
 
 % Method parameters
-n = round(T/h) + 1;
-t = linspace(0,n*h,n);
-W = zeros(n, length(initialConditions));  % matrix for storing x, y, u and v values
+n = round(T/h);
+t = linspace(0, n*h, n+1);
+W = zeros(n, length(initialConditions));  % matrix for x, y, u and v values
 W(1,:) = initialConditions;
 
 % Get data points
-for i=1:(n-1)
+for i=1:n
     W(i+1,:) = IVPSolver(t(i), W(i,:), h, V_DC, V_AC);
 end
 
@@ -38,8 +38,8 @@ analyticSolX = initialConditions(1)*cos(sqrt(a)*t);%*t(end)); % test
 % test end
 
 % Get error after five periods
-maxErrorX = abs(W(end,1) - analyticSolX(end));
-% [maxErrorX, index] = max(abs(W(:,1)'-analyticSolX)); % største feil, test
- relativeErrorX = maxErrorX/analyticSolX(end); % test: fjern ved bruk av største feil
+%maxErrorX = abs(W(end,1) - analyticSolX(end));
+ [maxErrorX, index] = max(abs(W(:,1)'-analyticSolX)); % største feil, test
+ relativeErrorX = maxErrorX/analyticSolX(index); % test: bytt end med index ved bruk av største feil
 
 end
