@@ -1,4 +1,4 @@
-function ic = getRandomInitialConditions()
+function initialConditions = getRandomInitialConditions()
 % Returns 1000 sets of initial conditions [x_0 y_0 z_0 u_0 v_0 w_0]
 
 % Generating random initial distances to z-axis (maximum r_0/2)
@@ -23,7 +23,7 @@ initialSpeedX = sqrt(initialSpeedXSquaredRatio.*initialSpeedXYSquared);
 initialSpeedY = sqrt(initialSpeedYSquaredRatio.*initialSpeedXYSquared);
 
 % Return initial conditions
-ic = [initialX; initialY; zeros(1,1000); initialSpeedX; initialSpeedY; ...
-    initialSpeedZ];
+initialConditions = [initialX; initialY; zeros(1,1000); initialSpeedX; ...
+    initialSpeedY; initialSpeedZ];
 
 end
