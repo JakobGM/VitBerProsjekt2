@@ -6,7 +6,7 @@ close all;
 ydot = @ydot_V_DC; % rhs-equations
 initialConditions = [1e-3, 0, 0, 0]; % [x_0, y_0, u_0, v_o]
 
-h = 10.^(-10:0.1:-7);
+h = 10.^(-9:0.05:-7.5);
 n = length(h);
 maxErrorEuler = zeros(1,n);
 relativeErrorEuler = zeros(1,n);
@@ -26,4 +26,6 @@ end
 % maxE_RK4 = getMaxError(h, initialConditions, @RK4, ydot);
 % test end
 
-loglog(h, relativeErrorEuler, 'o', h, relativeErrorRK4, 'o');
+loglog(h, maxErrorEuler, h, maxErrorRK4);
+axis([1e-9 10^(-7.5) 1e-16 1e-2]); % maxError
+%axis([1e-9 10^(-7.5) 1e-16 1e-2]); % relError
