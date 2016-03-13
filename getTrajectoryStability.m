@@ -6,8 +6,6 @@ if nargin == 5
     u = 1.66054e-27; % atomic mass unit
     m = 28*u; % particle mass
 else
-    error ('Function was not given the proper amount of parameters');
-end
 
 n = round(T/h) + 1;
 t = linspace(0, n*h, n);

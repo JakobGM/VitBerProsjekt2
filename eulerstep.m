@@ -6,13 +6,13 @@ function new_w = eulerStep(t, w, h, V_DC, V_AC, m)
 % Output of eulerstep: Approximate solution value [x, y, u, v] at time t+h
 
 if nargin == 5;
-    new_w = w + h*lhs_dot(t, w, V_DC, V_AC);
+    new_w = w + h*wdot(t, w, V_DC, V_AC);
     
 elseif nargin == 6
-    new_w = w + h*lhs_dot(t, w, V_DC, V_AC, m);
+    new_w = w + h*wdot(t, w, V_DC, V_AC, m);
     
 else
-    error('eulerStep() was not given the proper amount of parameters');
+    error('eulerStep() was not given the proper amount of arguments');
 end
 
 end

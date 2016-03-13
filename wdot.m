@@ -1,4 +1,4 @@
-function w_dot = lhs_dot(t, w, V_DC, V_AC, m)
+function w_dot = wdot(t, w, V_DC, V_AC, m)
 % Right-hand side of particle ODE's from Task 3
 
 % Constants
