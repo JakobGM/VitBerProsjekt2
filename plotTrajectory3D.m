@@ -25,8 +25,7 @@ plot3(W(:,1)*1000, W(:,2)*1000, z_pos, 'k');
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
-xlabel('$x$ (mm)'); ylabel('$y$ (mm)'); zlabel('$z$ (m)');
-title('Animasjon av en $N_2^+$-partikkel i $R_3$');
+xlabel('$x$ [mm]'); ylabel('$y$ [mm]'); zlabel('$z$ [m]');
 
 % Figure style
 axisLimitXY = 4; r_0_mm = r_0*1000;

@@ -1,9 +1,9 @@
-function percentage = getDetectedPercentage(h, m)
-% Get the percentage detected of 1000 particles sent into the apparatus
+function percentage = getDetectedPercentage(h, m, V_DC)
+% Get the percentage detected of 1000 particles sent into the apparatus,
+% with timestep h, particle mass m and dirrect current voltage V_DC
 
 ic = getRandomInitialConditions(); % 1000 random initial conditions
 
-V_DC = 7.65; % direct current voltage
 V_AC = 46.25; % alternating current voltage
 T = 20e-6;
 n = round(T/h)+1;
