@@ -1,4 +1,5 @@
 function plotStability()
+close all
 
 V_AC = 5; % alternating current voltage
 step_V_AC = 0.2; % step size V_AC
@@ -14,7 +15,7 @@ m = 28*u; % particle mass
 i = 1;
 for V_DC = 1 : step_V_DC : 8.5
     stable = getTrajectoryStability(T, h, initialCondtions, V_DC, V_AC, m);
-    
+
     % Get first stable V_AC-value
     while (stable == false)
         if (V_AC > 60)
@@ -23,12 +24,13 @@ for V_DC = 1 : step_V_DC : 8.5
         V_AC = V_AC + step_V_AC;
         stable = getTrajectoryStability(T, h, initialCondtions, V_DC, V_AC, m);
     end
+
     if (V_AC < 60)
         values(i,1) = V_AC;
         values(i,2) = V_DC;
         i = i + 1;
     end
-    
+
     % Get final stable V_AC-value
     while (stable == true)
         if (V_AC > 60)
@@ -37,6 +39,7 @@ for V_DC = 1 : step_V_DC : 8.5
         V_AC = V_AC + step_V_AC;
         stable = getTrajectoryStability(T, h, initialCondtions, V_DC, V_AC, m);
     end
+
     if (V_AC < 60)
         values(i,1) = V_AC;
         values(i,2) = V_DC;
@@ -56,9 +59,9 @@ xlabel('$V_{AC}$'); ylabel('$V_{DC}$');
 
 axis([15, 60, 1, 8]);
 annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Ustabil',...
-    'edgeColor', [1,1,1]); % text box in plot
+    'edgeColor', [1,1,1], 'Interpreter', 'latex'); % text box in plot
 annotation('textbox', [0.52,0.25,0.1,0.1], 'String', 'Stabil',...
-    'edgeColor', [1,1,1]);
+    'edgeColor', [1,1,1], 'Interpreter', 'latex');
 saveTightFigure(stability, ...
     'figures/plotStability.pdf'); % saves figure
 
