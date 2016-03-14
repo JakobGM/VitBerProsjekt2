@@ -45,7 +45,13 @@ end
 
 fs = 12; % font size
 plot(values(:,1), values(:,2), 'k.');
+hold on;
 title('Stabilitets-diagram', 'FontSize', fs+4);
 xlabel('V_{AC}', 'FontSize', fs); ylabel('V_{DC}', 'FontSize', fs);
+mTextBox1 = uicontrol('style','text');
+mTextBox2 = uicontrol('style','text');
+set(mTextBox1,'String','Unstable','Position',[25,6,10,1]);
+set(mTextBox2,'String', 'Unstable','Position',[42,3,10,1]);
+
 
 end
