@@ -40,7 +40,7 @@ legend('x-posisjon', 'y-posisjon', 'Location', 'northeast');
 ylabel('Avstand fra x/y-aksen [m]', 'FontSize', fs);
 axis([0, 0.1, -r_0, r_0]);
 saveTightFigure(unstable, ...
-            'figures/plotTrajectory_unstable.pdf'); % saves figure
+            'figures/plotUnstableTrajectory.pdf'); % saves figure
 
 
 end

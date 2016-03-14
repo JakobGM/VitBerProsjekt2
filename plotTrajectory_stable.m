@@ -33,7 +33,7 @@ legend('$x$-posisjon', '$y$-posisjon', 'Location', 'northeast');
 ylabel('Avstand fra $x$/$y$-aksen [m]', 'FontSize', fs);
 axis([0, 0.1, -r_0, r_0]);
 saveTightFigure(stable, ...
-            'figures/plotTrajectory_stable.pdf'); % saves figure
+            'figures/plotStableTrajectory.pdf'); % saves figure
 
 
 end
