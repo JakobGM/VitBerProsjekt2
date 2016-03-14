@@ -3,6 +3,7 @@
 clear;
 close all;
 
+% Parameters
 T = 20e-6; % total time
 h = 1e-9;  % time step
 plotSteps = 100; % steps per point plottet

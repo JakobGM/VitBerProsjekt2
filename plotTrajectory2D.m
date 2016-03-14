@@ -24,8 +24,7 @@ plot(W(:,1)*1000, W(:,2)*1000, 'k');
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
-xlabel('$x$ (mm)'); ylabel('$y$ (mm)');
-title('Animasjon av en $N_2^+$-partikkel i $xy$-planet');
+xlabel('$x$ [mm]'); ylabel('$y$ [mm]');
 
 % Figure style
 axisLimit = 4; r_0_mm = r_0*1000; 
