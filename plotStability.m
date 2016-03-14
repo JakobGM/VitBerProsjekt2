@@ -1,20 +1,24 @@
 function plotStability()
-close all
+clear;
+close all;
 
+% Physical parameters
 V_AC = 5; % alternating current voltage
+u = 1.66054e-27; % atomic mass unit
+m = 28*u; % particle mass
+T = 20e-6; % total time
+initialConditions = [1e-3, 1e-3, 0, 0]; % initial conditions (x,y)
+
+% Method parameters
+h = 1e-8; % step size for numeric method (RK4)
 step_V_AC = 0.2; % step size V_AC
 step_V_DC = 0.2; % step size V_DC
 values = []; % line between stable and unstable
-T = 20e-6; % total time
-h = 1e-8; % step size for numeric method (RK4)
-initialCondtions = [1e-3, 1e-3, 0, 0]; % initial conditions (x,y)
-u = 1.66054e-27; % atomic mass unit
-m = 28*u; % particle mass
 
 % Get stability
 i = 1;
-for V_DC = 1 : step_V_DC : 8.5
-    stable = getTrajectoryStability(T, h, initialCondtions, V_DC, V_AC, m);
+for V_DC = 1:step_V_DC:8.5
+    stable = getTrajectoryStability(T, h, initialConditions, V_DC, V_AC, m);
 
     % Get first stable V_AC-value
     while (stable == false)
@@ -22,7 +26,7 @@ for V_DC = 1 : step_V_DC : 8.5
             break;
         end
         V_AC = V_AC + step_V_AC;
-        stable = getTrajectoryStability(T, h, initialCondtions, V_DC, V_AC, m);
+        stable = getTrajectoryStability(T, h, initialConditions, V_DC, V_AC, m);
     end
 
     if (V_AC < 60)
@@ -37,7 +41,7 @@ for V_DC = 1 : step_V_DC : 8.5
             break;
         end
         V_AC = V_AC + step_V_AC;
-        stable = getTrajectoryStability(T, h, initialCondtions, V_DC, V_AC, m);
+        stable = getTrajectoryStability(T, h, initialConditions, V_DC, V_AC, m);
     end
 
     if (V_AC < 60)

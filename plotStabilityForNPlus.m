@@ -1,12 +1,13 @@
 function plotStabilityForNPlus()
-close all
+clear;
+close all;
 
 % Physical parameters
 V_AC = 10; % alternating current voltage
 u = 1.66054e-27; % atomic mass unit
 m = 14*u; % particle mass
 T = 20e-6; % total time
-ic = [1e-3, 1e-3, 0, 0]; % initial conditions (x,y)
+initialConditions = [1e-3, 1e-3, 0, 0]; % initial conditions (x,y)
 
 % Method parameters
 h = 1e-8; % step size for numeric method (RK4)
@@ -17,7 +18,7 @@ values = []; % line between stable and unstable
 % Get stability
 i = 1;
 for V_DC = 2:step_V_DC:4.5
-    stable = getTrajectoryStability(T, h, ic, V_DC, V_AC, m);
+    stable = getTrajectoryStability(T, h, initialConditions, V_DC, V_AC, m);
 
     % Get first stable V_AC-value
     while (stable == false)
@@ -25,7 +26,7 @@ for V_DC = 2:step_V_DC:4.5
             break;
         end
         V_AC = V_AC + step_V_AC;
-        stable = getTrajectoryStability(T, h, ic, V_DC, V_AC, m);
+        stable = getTrajectoryStability(T, h, initialConditions, V_DC, V_AC, m);
     end
 
     if (V_AC < 40)
@@ -40,7 +41,7 @@ for V_DC = 2:step_V_DC:4.5
             break;
         end
         V_AC = V_AC + step_V_AC;
-        stable = getTrajectoryStability(T, h, ic, V_DC, V_AC, m);
+        stable = getTrajectoryStability(T, h, initialConditions, V_DC, V_AC, m);
     end
 
     if (V_AC < 40)
