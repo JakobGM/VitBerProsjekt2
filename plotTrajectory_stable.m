@@ -20,18 +20,21 @@ end
 
 % plot the trajectories
 fs = 12; % font size
-% set(groot, 'defaultTextInterpreter', 'latex');
-% set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
-% set(groot, 'defaultLegendInterpreter', 'latex');
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
 
-plot(z_pos(:), W(:,1), 'r'); % plot x-values
+stable = figure();
 hold on;
+plot(z_pos(:), W(:,1), 'r'); % plot x-values
 plot(z_pos(:), W(:,2), 'b'); % plot y-values
 xlabel('Avstand fra $z$-aksen [m]', 'FontSize', fs);
 legend('$x$-posisjon', '$y$-posisjon', 'Location', 'northeast');
 ylabel('Avstand fra $x$/$y$-aksen [m]', 'FontSize', fs);
 title('Stabil bane', 'FontSize', fs);
 axis([0, 0.1, -r_0, r_0]);
+saveTightFigure(stable, ...
+            'figures/plotTrajectory_stable.pdf'); % saves figure
 
 
 end

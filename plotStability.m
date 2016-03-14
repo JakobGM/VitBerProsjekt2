@@ -5,7 +5,7 @@ step_V_AC = 0.2; % step size V_AC
 step_V_DC = 0.2; % step size V_DC
 values = []; % line between stable and unstable
 T = 0.00002; % total time
-h = 10^(-7.5); % step size for numeric method (RK4)
+h = 10^(-8); % step size for numeric method (RK4)
 ic = [0.001, 0.001, 0, 0]; % initial conditions (x,y)
 u = 1.66054e-27; % atomic mass unit
 m = 28*u; % particle mass
@@ -43,15 +43,21 @@ for V_DC = 1 : step_V_DC : 8.5
 
 end
 
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
+
 fs = 12; % font size
-plot(values(:,1), values(:,2), 'k.');
+stability = figure();
 hold on;
+plot(values(:,1), values(:,2), 'k.');
 title('Stabilitets-diagram', 'FontSize', fs+4);
 xlabel('V_{AC}', 'FontSize', fs); ylabel('V_{DC}', 'FontSize', fs);
-mTextBox1 = uicontrol('style','text');
-mTextBox2 = uicontrol('style','text');
-set(mTextBox1,'String','Unstable','Position',[25,6,10,1]);
-set(mTextBox2,'String', 'Unstable','Position',[42,3,10,1]);
-
+annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Unstable',...
+    'EdgeColor',[1,1,1]); % text box in plot
+annotation('textbox', [0.65,0.3,0.1,0.1], 'String', 'Stable',...
+    'EdgeColor',[1,1,1]);
+saveTightFigure(stability, ...
+            'figures/plotStability.pdf'); % saves figure
 
 end

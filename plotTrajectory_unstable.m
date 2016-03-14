@@ -27,10 +27,11 @@ end
 
 % plot the trajectories
 fs = 12; % font size
-% set(groot, 'defaultTextInterpreter', 'latex');
-% set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
-% set(groot, 'defaultLegendInterpreter', 'latex');
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
 
+unstable = figure();
 plot(z_pos(:), W(:,1), 'r'); % plot x-values
 hold on;
 plot(z_pos(:), W(:,2), 'b'); % plot y-values
@@ -39,6 +40,8 @@ legend('x-posisjon', 'y-posisjon', 'Location', 'northeast');
 ylabel('Avstand fra x/y-aksen [m]', 'FontSize', fs);
 title('Ustabil bane', 'FontSize', fs);
 axis([0, 0.1, -r_0, r_0]);
+saveTightFigure(unstable, ...
+            'figures/plotTrajectory_unstable.pdf'); % saves figure
 
 
 end
