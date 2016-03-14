@@ -5,7 +5,7 @@ function plotDetectedPercentage(atomicMassValues, V_DC)
 
 % Parameters ant initializing
 T = 20e-6; % total time
-h = 1e-7;  % time step
+h = 1e-8;  % time step
 u = 1.66054e-27; % atomic mass unit
 detectedPercentage = zeros(1, length(atomicMassValues));
 
@@ -16,14 +16,15 @@ for i = 1:length(atomicMassValues)
 end
 
 % Plot percentages
-plot(atomicMassValues, detectedPercentage, 'o');
+barDetectedPercentage = figure();
+bar(atomicMassValues, detectedPercentage, 0.4);
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 xlabel('Masse $m$ [u]');
-ylabel('Andel partikler detektert [%]');
-legend('Partikler med angitt masse');
+ylabel('Andel partikler detektert [\%]');
 
-saveTightFigure(plotMaxError, 'figures/plotDetectedPercentage.pdf');
+saveTightFigure(barDetectedPercentage, ...
+    'figures/barDetectedPercentage.pdf');
 
 end
