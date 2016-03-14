@@ -38,7 +38,7 @@ hold on;
 plot(x, testGood, 'r', 'LineWidth', 2);
 plot(x, testBad, 'b', 'LineWidth', 2);
 xlabel('$m$ [$u$]', 'FontSize', fs);
-ylabel('Partikler som når detektoren [%]', 'FontSize', fs);
+ylabel('Partikler som når detektoren [\%]', 'FontSize', fs);
 legend('Bra verdier', 'Dårlige verdier', 'Location', 'best');
 axis([10, 80, 0.5, 105]);
 saveTightFigure(testingMasses, ...
