@@ -52,6 +52,7 @@ stability = figure();
 hold on;
 plot(values(:,1), values(:,2), 'k.');
 xlabel('V_{AC}', 'FontSize', fs); ylabel('V_{DC}', 'FontSize', fs);
+axis([15, 60, 1, 8]);
 annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Unstable',...
     'EdgeColor',[1,1,1]); % text box in plot
 annotation('textbox', [0.65,0.3,0.1,0.1], 'String', 'Stable',...
