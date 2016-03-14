@@ -19,24 +19,26 @@ end
 % Plot the trajectories
 trajectoryAnimation = figure();
 hold on;
-fs = 12; % font size
-plot(W(:,1), W(:,2), 'k');
-xlabel('$x$', 'fontSize', fs); ylabel('$y$', 'fontSize', fs);
-title(['Bane til og animasjon av en $N_2^+$-partikkels bane i ' ...
-    '$xy$-planet']);
+plot(W(:,1)*1000, W(:,2)*1000, 'k');
+
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
+xlabel('$x$ (mm)'); ylabel('$y$ (mm)');
+title('Animasjon av en $N_2^+$-partikkel i $xy$-planet');
 
 % Figure style
-axisLimit = 4e-3; r_0 = 3e-3; % r_0: electrode distance to origo
-plot([-r_0 r_0], [0 0], 'r.', ... % positive electrodes
-	 [0 0], [-r_0 r_0], 'b.', 'markersize', 30); % negative electrodes
+axisLimit = 4; r_0_mm = r_0*1000; 
+plot([-r_0_mm r_0_mm], [0 0], 'r.', ... % positive electrodes
+	 [0 0], [-r_0_mm r_0_mm], 'b.', 'markersize', 30); % negative electrodes
 axis([-axisLimit axisLimit -axisLimit axisLimit]); % freeze axes
 grid on;
 line([-axisLimit axisLimit], [0 0], 'color', 'k', 'linewidth', 0.5);
 line([0 0], [-axisLimit axisLimit], 'color', 'k', 'linewidth', 0.5);
 
 % Animate
-head=line('color', 'r', 'marker', '.', 'markersize', 18, ...
-    'xData', [], 'yData', []);
+head=line('color', 'r', 'marker', '.', 'markersize', 20, ...
+    'XData', [], 'YData', []);
 
 % Analytic solution for x_0=1mm, y_0=0
 if initialConditions(2) == 0
@@ -46,16 +48,15 @@ if initialConditions(2) == 0
     a = 2*V_DC*q/(m*r_0^2); % constant
     analyticSolX = initialConditions(1)*cos(sqrt(a)*t);
 
-    head2=line('color', 'c', 'marker', '.', 'markersize', 15, ...
-        'xData', [], 'yData', []);
-    legend([head head2], {'$N_2^+$', '$N_2^+$ analytisk'}, ...
-        'interpreter', 'latex');
+    head2=line('color', 'c', 'marker', '.', 'markersize', 13, ...
+        'XData', [], 'YData', []);
+    legend([head head2], {'$N_2^+$', '$N_2^+$ analytisk'});
 
     for i=1:p:n
-        set(head, 'xData', W(i,1), 'yData', W(i,2));
-        set(head2, 'xData', analyticSolX(i), 'yData', 0);
+        set(head, 'XData', W(i,1)*1000, 'YData', W(i,2)*1000);
+        set(head2, 'XData', analyticSolX(i)*1000, 'YData', 0);
         drawnow; pause(h*p);
-        if (i == 1 + p*round(n/(p*25))) % For savning figure
+        if (i == 1 + p*round(n/(p*25))) % For saving figure
         saveTightFigure(trajectoryAnimation, ...
             'figures/trajectoryAnimationAnalytic.pdf');
         end 
@@ -71,10 +72,10 @@ if initialConditions(2) == 0
 
 % Without analytic
 else
-    legend(head, {'$N_2^+$'}, 'interpreter', 'latex');
+    legend(head, {'$N_2^+$'});
 
     for i=1:p:n
-        set(head, 'yData', W(i,1), 'yData', W(i,2));
+        set(head, 'XData', W(i,1)*1000, 'YData', W(i,2)*1000);
         drawnow; pause(h*p);
         if (i == 1 + p*round(n/(p*25))) % For savning figure
             saveTightFigure(trajectoryAnimation, ...

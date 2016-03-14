@@ -29,7 +29,7 @@ end
 % Maximum error plot
 loglog(h, maxErrorEuler, h, maxErrorRK4);
 axis([1e-9 10^(-7.5) 1e-16 1e-2]); 
-set(0,'defaulttextinterpreter','latex');
+set(0,'defaultTextInterpreter','latex');
 xlabel('Time step $h$ (s)');
 ylabel('Error in estimated $x$-position $E_x$ (m)');
 title('Error in estimated $x$-position as a function of time step $h$');
