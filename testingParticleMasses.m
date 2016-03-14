@@ -1,6 +1,6 @@
 function testingParticleMasses()
 
-T = 0.00002; % total time
+T = 20e-6; % total time
 h = 1e-7; % step size for numeric method (RK4)
 initialConditions = [0.001, 0.001, 0, 0];
 u = 1.66054e-27; % atomic mass unit
@@ -37,9 +37,9 @@ testingMasses = figure();
 hold on;
 plot(x, testGood, 'r', 'LineWidth', 2);
 plot(x, testBad, 'b', 'LineWidth', 2);
-xlabel('$m$ [$u$]', 'FontSize', fs);
-ylabel('Partikler som når detektoren [\%]', 'FontSize', fs);
-legend('Bra verdier', 'Dårlige verdier', 'Location', 'best');
+xlabel('$m$ [$u$]');
+ylabel('Partikler som detekteres [$\%$]');
+legend('Bra verdier', 'Darlige verdier', 'location', 'best');
 axis([10, 80, 0.5, 105]);
 saveTightFigure(testingMasses, ...
             'figures/testingParticleMasses.pdf'); % saves figure
