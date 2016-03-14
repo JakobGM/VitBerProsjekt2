@@ -31,7 +31,6 @@ plot(z_pos(:), W(:,2), 'b'); % plot y-values
 xlabel('Avstand fra $z$-aksen [m]', 'FontSize', fs);
 legend('$x$-posisjon', '$y$-posisjon', 'Location', 'northeast');
 ylabel('Avstand fra $x$/$y$-aksen [m]', 'FontSize', fs);
-title('Stabil bane', 'FontSize', fs);
 axis([0, 0.1, -r_0, r_0]);
 saveTightFigure(stable, ...
             'figures/plotTrajectory_stable.pdf'); % saves figure

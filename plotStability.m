@@ -51,7 +51,6 @@ fs = 12; % font size
 stability = figure();
 hold on;
 plot(values(:,1), values(:,2), 'k.');
-title('Stabilitets-diagram', 'FontSize', fs+4);
 xlabel('V_{AC}', 'FontSize', fs); ylabel('V_{DC}', 'FontSize', fs);
 annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Unstable',...
     'EdgeColor',[1,1,1]); % text box in plot
