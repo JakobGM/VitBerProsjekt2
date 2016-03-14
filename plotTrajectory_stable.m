@@ -1,7 +1,7 @@
 function plotTrajectory_stable()
 
 V_DC = 5; V_AC = 38; % voltages
-T = 2e-6; % total time
+T = 20e-6; % total time
 h = 1e-8; % step size for numeric method (RK4)
 r_0 = 3e-3; % electrode distance to origo
 n = round(T/h);
@@ -13,7 +13,7 @@ z_pos = linspace(0, 0.10, n+1);
 u = 1.66054e-27; % atomic mass unit
 m = 28*u; % particle mass
 
-% get data points
+% Get data points
 for i = 1:n
     W(i+1,:) = rk4Step(t(i), W(i,:), h, V_DC, V_AC, m);
 end

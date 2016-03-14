@@ -1,20 +1,25 @@
 function plotStabilityForNPlus()
 close all
 
+% Physical parameters
 V_AC = 10; % alternating current voltage
+u = 1.66054e-27; % atomic mass unit
+m = 14*u; % particle mass
+T = 20e-6; % total time
+ic = [1e-3, 1e-3, 0, 0]; % initial conditions (x,y)
+
+% Method parameters
+h = 1e-8; % step size for numeric method (RK4)
 step_V_AC = 0.2; % step size V_AC
 step_V_DC = 0.2; % step size V_DC
 values = []; % line between stable and unstable
-T = 20e-6; % total time
-h = 1e-8; % step size for numeric method (RK4)
-ic = [1e-3, 1e-3, 0, 0]; % initial conditions (x,y)
-u = 1.66054e-27; % atomic mass unit
-m = 14*u; % particle mass
 
+% Get stability
 i = 1;
 for V_DC = 2:step_V_DC:4.5
     stable = getTrajectoryStability(T, h, ic, V_DC, V_AC, m);
 
+    % Get first stable V_AC-value
     while (stable == false)
         if (V_AC > 40)
             break;
@@ -29,6 +34,7 @@ for V_DC = 2:step_V_DC:4.5
         i = i + 1;
     end
 
+     % Get first stable V_AC-value
     while (stable == true)
         if (V_AC > 40)
             break;
@@ -46,20 +52,23 @@ for V_DC = 2:step_V_DC:4.5
     V_AC = 10;
 end
 
+% Plot stability
+stability = figure();
+hold on;
+plot(values(:,1), values(:,2), 'k.');
+
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 
-stability = figure();
-hold on;
-plot(values(:,1), values(:,2), 'k.');
 xlabel('$V_{AC}$'); ylabel('$V_{DC}$');
 axis([10, 30, 2, 4]);
-annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Ustabil',...
-    'EdgeColor',[1,1,1], 'Interpreter', 'latex'); % text box in plot
-annotation('textbox', [0.55,0.3,0.1,0.1], 'String', 'Stabil',...
-    'EdgeColor',[1,1,1], 'Interpreter', 'latex');
+annotation('textbox', [0.25,0.75,0.1,0.1], 'string', 'Ustabil',...
+    'edgeColor',[1,1,1], 'interpreter', 'latex'); % text box in plot
+annotation('textbox', [0.55,0.3,0.1,0.1], 'string', 'Stabil',...
+    'edgeColor',[1,1,1], 'interpreter', 'latex');
+
 saveTightFigure(stability, ...
-            'figures/plotStabilityForNPlus.pdf'); % saves figure
+    'figures/plotStabilityForNPlus.pdf'); % saves figure
 
 end

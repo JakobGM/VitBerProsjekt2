@@ -27,10 +27,9 @@ end
 
 W(:,1) = W(:,1) .* 1000;
 W(:,2) = W(:,2) .* 1000;
-z_pos(:) = z_pos(:) .* 1000;
+z_pos(:) = z_pos(:)*1000;
 
 % plot the trajectories
-fs = 12; % font size
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
@@ -39,9 +38,9 @@ unstable = figure();
 plot(z_pos(:), W(:,1), 'r'); % plot x-values
 hold on;
 plot(z_pos(:), W(:,2), 'b'); % plot y-values
-xlabel('Avstand fra z-aksen [mm]', 'FontSize', fs);
-legend('x-posisjon', 'y-posisjon', 'Location', 'northeast');
-ylabel('Avstand fra x/y-aksen [mm]', 'FontSize', fs);
+xlabel('Avstand fra $xy$-planet [mm]');
+legend('$x$-posisjon', '$y$-posisjon', 'Location', 'northeast');
+ylabel('Avstand fra $x$/$y$-aksen [mm]');
 axis([0, 100, -r_0*1000, r_0*1000]);
 saveTightFigure(unstable, ...
             'figures/plotUnstableTrajectory.pdf'); % saves figure
