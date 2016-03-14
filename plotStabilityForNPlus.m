@@ -1,4 +1,5 @@
 function plotStabilityForNPlus()
+close all
 
 V_AC = 10; % AC-voltage
 step_V_AC = 0.2; % step size V_AC
@@ -55,9 +56,9 @@ plot(values(:,1), values(:,2), 'k.');
 xlabel('$V_{AC}$'); ylabel('$V_{DC}$');
 axis([10, 30, 2, 4]);
 annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Ustabil',...
-    'EdgeColor',[1,1,1]); % text box in plot
-annotation('textbox', [0.65,0.3,0.1,0.1], 'String', 'Stabil',...
-    'EdgeColor',[1,1,1]);
+    'EdgeColor',[1,1,1], 'Interpreter', 'latex'); % text box in plot
+annotation('textbox', [0.55,0.3,0.1,0.1], 'String', 'Stabil',...
+    'EdgeColor',[1,1,1], 'Interpreter', 'latex');
 saveTightFigure(stability, ...
             'figures/plotStabilityForNPlus.pdf'); % saves figure
 
