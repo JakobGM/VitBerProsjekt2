@@ -53,19 +53,20 @@ for V_DC = 1:step_V_DC:8.5
     V_AC = 5;
 end
 
+stability = figure();
+plot(values(:,1), values(:,2), 'k.');
+axis([15, 60, 1, 8]);
+
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 
-stability = figure();
-plot(values(:,1), values(:,2), 'k.');
 xlabel('$V_{AC}$'); ylabel('$V_{DC}$');
-
-axis([15, 60, 1, 8]);
 annotation('textbox', [0.25,0.75,0.1,0.1], 'String', 'Ustabil',...
     'edgeColor', [1,1,1], 'Interpreter', 'latex'); % text box in plot
 annotation('textbox', [0.52,0.25,0.1,0.1], 'String', 'Stabil',...
     'edgeColor', [1,1,1], 'Interpreter', 'latex');
+
 saveTightFigure(stability, ...
     'figures/plotStability.pdf'); % saves figure
 

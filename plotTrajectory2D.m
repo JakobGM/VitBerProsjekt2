@@ -55,7 +55,7 @@ if initialConditions(2) == 0
         set(head, 'XData', W(i,1)*1000, 'YData', W(i,2)*1000);
         set(head2, 'XData', analyticSolX(i)*1000, 'YData', 0);
         drawnow; pause(h*p);
-        if (i == 1 + p*round(n/(p*25))) % For saving figure
+        if (i == 1 + p*round(n/(p*30))) % For saving figure
         saveTightFigure(trajectoryAnimation, ...
             'figures/trajectoryAnimationAnalytic.pdf');
         end 
@@ -76,7 +76,7 @@ else
     for i=1:p:n
         set(head, 'XData', W(i,1)*1000, 'YData', W(i,2)*1000);
         drawnow; pause(h*p);
-        if (i == 1 + p*round(n/(p*25))) % For savning figure
+        if (i == 1 + p*round(n/(p*30))) % For savning figure
             saveTightFigure(trajectoryAnimation, ...
             'figures/trajectoryAnimation.pdf');
         end 

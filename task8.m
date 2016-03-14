@@ -6,5 +6,5 @@ clear;
 close all;
 
 atomicMassValues = 26:33;
-V_DC = 7.7;
+V_DC = 7.0;
 plotDetectedPercentage(atomicMassValues, V_DC);

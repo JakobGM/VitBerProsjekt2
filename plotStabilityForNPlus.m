@@ -55,15 +55,14 @@ end
 
 % Plot stability
 stability = figure();
-hold on;
 plot(values(:,1), values(:,2), 'k.');
+axis([10, 30, 2, 4]);
 
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 
 xlabel('$V_{AC}$'); ylabel('$V_{DC}$');
-axis([10, 30, 2, 4]);
 annotation('textbox', [0.25,0.75,0.1,0.1], 'string', 'Ustabil',...
     'edgeColor',[1,1,1], 'interpreter', 'latex'); % text box in plot
 annotation('textbox', [0.55,0.3,0.1,0.1], 'string', 'Stabil',...
