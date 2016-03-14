@@ -1,7 +1,8 @@
+function electricFieldPlot()
 % Plotting electric and potential field lines for both a quadrupole and for a hyperbolic approximation
 % NB! Using only SI-units
 close all
-clear all
+clear
 format long
 
 % Constants
@@ -121,3 +122,4 @@ ylabel(yLabelText);
 saveTightFigure(pointChargeFieldFigure, 'figures/pointChargeFieldFigure.pdf')
 saveTightFigure(hyperbolicFieldFigure, 'figures/hyperbolicFieldFigure.pdf')
 saveTightFigure(comparisonFigure, 'figures/comparisonFigure.pdf')
+end
